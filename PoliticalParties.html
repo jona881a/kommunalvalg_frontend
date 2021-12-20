@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Political Parties Table</title>
+    <link rel="stylesheet" href="Tables.css">
+    <link rel="stylesheet" href="TopbarFinal.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="table-wrap">
+        <table class="table" id="politicalPartiesTable">
+            <thead>
+            <select id="selectSortBy" name="selectSortBy" required>
+                <option>sorter med</option>
+                <option value="id">Id</option>
+                <option value="firstname">fornavn</option>
+                <option value="lastname">efternavn</option>
+                <option value="politicalPartyName">politisk parti</option>
+                <option value="alias">Alias</option>
+            </select>
+            <select id="selectSortDir" name="selectSortDir">
+                <option>sorter efter</option>
+                <option value="asc">lavest til højest</option>
+                <option value="desc">højest til lavest</option>
+            </select>
+            <tr>
+                <th>Id</th>
+                <th>Fornavn</th>
+                <th>Efternavn</th>
+                <th>Politiske parti</th>
+                <th>Alias</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+    </table>
+    </div>
+    <div>
+        <button id="pbCreateNewMandate" onclick="window.location.href='createNewMandate.html';">Lav ny mandat</button>
+    </div>
+    <script src="PoliticalPartiesTable.js"></script>
+    <script src="DeleteMandate.js"></script>
+    <script src="updateMandate.js"></script>
+</body>
+</html>

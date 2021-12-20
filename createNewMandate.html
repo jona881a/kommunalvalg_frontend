@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lav ny mandat</title>
+    <link rel="stylesheet" href="Tables.css">
+    <link rel="stylesheet" href="TopbarFinal.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<form id="assign" action="http://localhost:8000/api/politicalparties/mandates" method="post">
+
+    <div>
+        <label>* Fornavn
+            <input name="firstname"/>
+        </label>
+    </div>
+    <div>
+        <label>* Efternavn
+            <input type="text" name="lastname" >
+        </label>
+    </div>
+    <div>
+        <label id="options">* Politisk
+            <select id="politicalParty" name="politicalPartySelector" required>
+                <option>Vælg parti</option>
+                <option value="7">Socialdemokratiet</option>
+                <option value="8">Det konservative Folkeparti</option>
+                <option value="9">Socialistisk Folkeparti</option>
+                <option value="10">Dansk Folkeparti</option>
+                <option value="11">Venstre</option>
+                <option value="12">Enhedslisten + De Rød Grønne</option>
+            </select>
+        </label>
+    </div>
+
+    <div id = "footer">
+        <button id="saveBtn" type="submit" title="Gem mandat">Save</button>
+        <button id="cancelBtn" type="reset" title="Afbryd" onclick="window.location.href = 'PoliticalParties.html'">Cancel</button>
+    </div>
+</form>
+<script src="createMandate.js"></script>
+</body>
+</html>
