@@ -3,22 +3,33 @@ const table = document.getElementById("politicalPartiesTable");
 const sortyBySelector = document.getElementById("selectSortBy");
 const sortDirSelector = document.getElementById("selectSortDir");
 
+
 sortyBySelector.addEventListener('change',(event) => {
     const optionIndex = sortyBySelector.value;
-    urlFetchPoliticalParties += "?sortBy=" + optionIndex;
-    createTable(urlFetchPoliticalParties);
-    console.log(urlFetchPoliticalParties);
+
+    if(urlFetchPoliticalParties.indexOf("sortBy") === -1) {
+        if(urlFetchPoliticalParties.indexOf("?") === -1) {
+            urlFetchPoliticalParties += "?sortBy=" + optionIndex;
+        } else {
+            urlFetchPoliticalParties += "&sortBy=" + optionIndex;
+        }
+        console.log(urlFetchPoliticalParties);
+        createTable(urlFetchPoliticalParties);
+    }
+
 });
 
 sortDirSelector.addEventListener('change',() => {
     const optionIndex = sortDirSelector.value;
-    if(urlFetchPoliticalParties.indexOf('?') === false) {
-        urlFetchPoliticalParties += "?sortDir=" + optionIndex;
-    } else {
-        urlFetchPoliticalParties += "&sortDir=" + optionIndex;
+    if(urlFetchPoliticalParties.indexOf('sortDir') === -1) {
+        if(urlFetchPoliticalParties.indexOf('?') === -1) {
+            urlFetchPoliticalParties += "?sortDir=" + optionIndex;
+        } else {
+            urlFetchPoliticalParties += "&sortDir=" + optionIndex;
+        }
+        console.log(urlFetchPoliticalParties);
+        createTable(urlFetchPoliticalParties);
     }
-    console.log(urlFetchPoliticalParties);
-    createTable(urlFetchPoliticalParties);
 })
 
 async function createTable(url) {

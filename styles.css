@@ -20,3 +20,9 @@
     text-align: center;
     float: left;
 }
+
+h1 {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Times New Roman";
+}

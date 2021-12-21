@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Political Parties Table</title>
+    <title>Mandatliste</title>
     <link rel="stylesheet" href="Tables.css">
     <link rel="stylesheet" href="TopbarFinal.css">
     <link rel="stylesheet" href="styles.css">
@@ -13,21 +13,31 @@
     <div class="container">
         <nav class="nav">
             <ul>
-                <li><a id = "current" href="PoliticalParties.html">Partiliste</a></li>
-                <li><a href="mandateList.html"> Mandatliste</a></li>
+                <li><a href="PoliticalParties.html">Partiliste</a></li>
+                <li><a id = "current" href="mandateList.html"> Mandatliste</a></li>
             </ul>
         </nav>
     </div>
 </div>
-
-<h1>Liste med alle Mandater til kommunalvalg Samsø 2021</h1>
+<div>
+    <h1 id="politicalPartyName"></h1>
+    <select id="selectPartyMandates" name="selectPartyMandates">
+        <option>Vælg parti</option>
+        <option value="7">Socialdemokratiet</option>
+        <option value="8">Det konservative Folkeparti</option>
+        <option value="9">Socialistisk Folkeparti</option>
+        <option value="10">Dansk Folkeparti</option>
+        <option value="11">Venstre</option>
+        <option value="12">Enhedslisten + De Rød Grønne</option>
+    </select>
     <div class="table-wrap">
-        <table class="table" id="politicalPartiesTable">
+        <table class="table" id="mandateTable">
             <thead>
             <select id="selectSortBy" name="selectSortBy" required>
                 <option>sorter med</option>
-                <option value="politicalPartyName">politisk parti</option>
-                <option value="alias">Alias</option>
+                <option value="id">id</option>
+                <option value="firstname">Fornavn</option>
+                <option value="lastname">Efternavn</option>
             </select>
             <select id="selectSortDir" name="selectSortDir">
                 <option>sorter efter</option>
@@ -44,13 +54,14 @@
                 <th></th>
             </tr>
             </thead>
-    </table>
+        </table>
     </div>
     <div>
         <button id="pbCreateNewMandate" onclick="window.location.href='createNewMandate.html';">Lav ny mandat</button>
     </div>
-    <script src="PoliticalPartiesTable.js"></script>
+    <script src="mandateTable.js"></script>
     <script src="DeleteMandate.js"></script>
     <script src="updateMandate.js"></script>
+</div>
 </body>
 </html>
