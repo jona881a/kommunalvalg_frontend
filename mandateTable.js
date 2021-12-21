@@ -9,7 +9,6 @@ const politicalPartyName = document.getElementById("politicalPartyName");
 politicalPartySelector.addEventListener('change',() => {
     const politicalPartyId = politicalPartySelector.value;
     urlFetchSpecificPartyMandates = `http://localhost:8000/api/politicalparties/${politicalPartyId}/mandates/`;
-    clearTable();
     createTable(urlFetchSpecificPartyMandates);
 })
 
@@ -22,7 +21,6 @@ sortyBySelector.addEventListener('change',(event) => {
         } else {
             urlFetchSpecificPartyMandates += "&sortBy=" + optionIndex;
         }
-        clearTable();
         createTable(urlFetchSpecificPartyMandates);
     }
 
@@ -37,16 +35,13 @@ sortDirSelector.addEventListener('change',() => {
         } else {
             urlFetchSpecificPartyMandates += "&sortDir=" + optionIndex;
         }
-        clearTable();
         createTable(urlFetchSpecificPartyMandates);
     }
 })
 
 async function createTable(url) {
-    console.log(table.rows.length);
     await fetch(url).then(response => response.json())
         .then(mandates => {
-            console.log(mandates)
             mandates.content.forEach(mandate => {
                 addTableRow(mandate);
             })
@@ -55,7 +50,6 @@ async function createTable(url) {
 
 function addTableRow(mandate){
     politicalPartyName.innerText = `Liste over ${mandate.politicalParty.politicalPartyName}s mandater`;
-    console.log(mandate);
 
     let rowCount = table.rows.length;
     let row = table.insertRow(rowCount);
@@ -96,14 +90,4 @@ function addTableRow(mandate){
         updateMandate(mandate);
     }
     cell9.appendChild(pbUpdate);
-}
-
-function clearTable() {
-    const rowCount = table.rows.length;
-
-    if(rowCount > 0) {
-        for (let i = 0; i < rowCount - 1; i++) {
-            table.deleteRow(i);
-        }
-    }
 }
