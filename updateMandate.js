@@ -1,29 +1,44 @@
-function updateMandate() {
-    window.location.href = "updateMandate.html";
+document.addEventListener("DOMContentLoaded",createFormEvent);
 
-    console.log("updateMandate called");
-    const mandate = {
-        id: mandate.id,
-        firstname: document.getElementById("editFirstname").innerText,
-        lastname: document.getElementById("editLastname").innerText
-    }
-    restUpdateMandate(mandate);
+function createFormEvent(){
+    const formObject = document.getElementById("updateMandateForm");
+    formObject.addEventListener("submit",restUpdateMandate);
 }
 
-async function restUpdateMandate(mandate) {
-    console.log(mandate);
+
+let updatedMandate;
+
+function updateMandate(mandate) {
+    updatedMandate = mandate;
+    console.log(updatedMandate);
+}
+
+async function restUpdateMandate(event) {
+    event.preventDefault();
+
+    const url = `http://localhost:8000/api/politicalparties/${updatedMandate.politicalParty.id}/mandates/${updatedMandate.id}`;
+    const form = event.currentTarget;
 
     try {
-        //const response = await restUpdateMandate(mandate);
-        const url = `http://localhost:8000/api/politicalparties/${mandate.politicalParty.id}/mandates/${mandate.id}`;
-        const jsonString = JSON.stringify(mandate);
+        const formData = new FormData(form);
+        const mandateFormObject = Object.fromEntries(formData.entries());
+
+        const mandateJSON = {
+            firstname: mandateFormObject.firstname,
+            lastname: mandateFormObject.lastname,
+            politicalParty: {
+                id: updatedMandate.politicalParty.id
+            }
+        }
+
+        const JSONObjectToJSONString = JSON.stringify(mandateJSON);
 
         const fetchOptions = {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: jsonString
+            body: JSONObjectToJSONString
         }
         const response = await fetch(url, fetchOptions);
 
@@ -35,24 +50,3 @@ async function restUpdateMandate(mandate) {
         alert(error.message);
     }
 }
-/*
-async function restUpdateMandate(mandate) {
-    //const url = "http://localhost:8000/api/politicalparties/"+ +"/mandates/" + mandate.id;
-    const url = `http://localhost:8000/api/politicalparties/${mandate.politicalParty.id}/mandates/${mandate.id}`;
-    const jsonString = JSON.stringify(mandate);
-
-    const fetchOptions = {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: jsonString
-    }
-    const response = await fetch(url, fetchOptions);
-
-    if (!response.ok) {
-        console.log("det gik ikke godt");
-    }
-    return response.json();
-}
-*/

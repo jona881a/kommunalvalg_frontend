@@ -10,10 +10,11 @@ sortyBySelector.addEventListener('change',(event) => {
     if(urlFetchPoliticalParties.indexOf("sortBy") === -1) {
         if(urlFetchPoliticalParties.indexOf("?") === -1) {
             urlFetchPoliticalParties += "?sortBy=" + optionIndex;
+            table.innerHTML = '';
         } else {
             urlFetchPoliticalParties += "&sortBy=" + optionIndex;
+            table.innerHTML = '';
         }
-        console.log(urlFetchPoliticalParties);
         createTable(urlFetchPoliticalParties);
     }
 
@@ -24,10 +25,11 @@ sortDirSelector.addEventListener('change',() => {
     if(urlFetchPoliticalParties.indexOf('sortDir') === -1) {
         if(urlFetchPoliticalParties.indexOf('?') === -1) {
             urlFetchPoliticalParties += "?sortDir=" + optionIndex;
+            table.innerHTML = '';
         } else {
             urlFetchPoliticalParties += "&sortDir=" + optionIndex;
+            table.innerHTML = '';
         }
-        console.log(urlFetchPoliticalParties);
         createTable(urlFetchPoliticalParties);
     }
 })

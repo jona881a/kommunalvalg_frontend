@@ -13,6 +13,7 @@ async function handleCreateNewMandateForm(event){
 
     try{
         const formData = new FormData(form);
+        console.log(formData);
         await insertMandateInBackend(url,formData);
 
     }catch(error){

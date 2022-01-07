@@ -5,10 +5,14 @@ const sortyBySelector = document.getElementById("selectSortBy");
 const sortDirSelector = document.getElementById("selectSortDir");
 const politicalPartySelector = document.getElementById("selectPartyMandates");
 const politicalPartyName = document.getElementById("politicalPartyName");
+const contentDiv = document.getElementById("content");
+const pbSaveChanges = document.getElementById("saveBtn");
+const pbCancelChanges = document.getElementById("cancelBtn");
 
 politicalPartySelector.addEventListener('change',() => {
     const politicalPartyId = politicalPartySelector.value;
     urlFetchSpecificPartyMandates = `http://localhost:8000/api/politicalparties/${politicalPartyId}/mandates/`;
+    table.innerHTML = '';
     createTable(urlFetchSpecificPartyMandates);
 })
 
@@ -21,9 +25,9 @@ sortyBySelector.addEventListener('change',(event) => {
         } else {
             urlFetchSpecificPartyMandates += "&sortBy=" + optionIndex;
         }
+        table.innerHTML = '';
         createTable(urlFetchSpecificPartyMandates);
     }
-
 });
 
 sortDirSelector.addEventListener('change',() => {
@@ -35,6 +39,7 @@ sortDirSelector.addEventListener('change',() => {
         } else {
             urlFetchSpecificPartyMandates += "&sortDir=" + optionIndex;
         }
+        table.innerHTML = '';
         createTable(urlFetchSpecificPartyMandates);
     }
 })
@@ -85,9 +90,27 @@ function addTableRow(mandate){
     let pbUpdate = document.createElement("input");
     pbUpdate.type = "button";
     pbUpdate.setAttribute("value", "Rediger mandat");
+
     pbUpdate.onclick = function() {
-        console.log(mandate);
-        updateMandate(mandate);
+        const contentDiv = document.getElementById("content");
+        const firstnameInput = document.getElementById("firstnameInput");
+        const lastnameInput = document.getElementById("lastnameInput");
+        const politicalPartyInput = document.getElementById("politicalPartyInput");
+
+        contentDiv.scrollIntoView(true);
+        contentDiv.style.display = 'block';
+        firstnameInput.value = mandate.firstname;
+        lastnameInput.value = mandate.lastname;
+        politicalPartyInput.value = mandate.politicalParty.politicalPartyName;
+
+        pbSaveChanges.onclick = function() {
+            updateMandate(mandate);
+        }
+        pbCancelChanges.addEventListener("click", () => {
+            contentDiv.style.display='none'
+            document.querySelector(".header").scrollIntoView(true);
+        });
+
     }
     cell9.appendChild(pbUpdate);
 }

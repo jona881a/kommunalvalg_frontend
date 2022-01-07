@@ -51,13 +51,31 @@
                 <th>Politiske parti</th>
                 <th>Alias</th>
                 <th></th>
-                <th></th>
+                <th>
+                </th>
             </tr>
             </thead>
         </table>
     </div>
     <div>
         <button id="pbCreateNewMandate" onclick="window.location.href='createNewMandate.html';">Lav ny mandat</button>
+    </div>
+    <div id="content" style="display: none;">
+        <form id="updateMandateForm" method="post">
+            <label> * Fornavn
+                <input type="text" id="firstnameInput" required name="firstname">
+            </label>
+            <label> * Lastname
+                <input type="text" id="lastnameInput" name="lastname" required>
+            </label>
+            <label> * politisk parti
+                <input type="text" id="politicalPartyInput" name="politicalPartyName" required readonly>
+            </label>
+            <div id = "footer">
+                <button id="saveBtn" type="submit" title="Gem ændringer">Gem ændringer</button>
+                <button id="cancelBtn" type="reset" title="Afbryd">Afbryd</button>
+            </div>
+        </form>
     </div>
     <script src="mandateTable.js"></script>
     <script src="DeleteMandate.js"></script>
